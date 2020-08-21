@@ -1,0 +1,7 @@
+Ad Soyad    /Muhammed Özdemir
+Memleket    /Elazığ
+Yaş         /23
+Üniversite  /Mersin Üniversitesi
+Bölüm       /Bilgisayar Teknolojisi ve Bilişim Sistemleri
+
+Katılamam
