@@ -16,3 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//View daki çalıştı
+/*Route::get('/merhaba', function(){
+	return view('merhaba')
+});
+*/
+
+
+//Controllerdaki Çalıştı
+Route::get('/merhaba', 'HomeController@merhaba');
+Route::get('/kayit', 'HomeController@createView');
+Route::post('/kaydet','HomeController@create');
+
+
+
+Route::get('/login','UserController@index'); 
+Route::get('/users','UserController@users');
