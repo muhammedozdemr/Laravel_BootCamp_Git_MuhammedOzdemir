@@ -22,13 +22,19 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/admin','AdminController@index');
+
 
 //Controllerdaki Çalıştı
 Route::get('/merhaba', 'HomeController@merhaba');
 Route::get('/kayit', 'HomeController@createView');
 Route::post('/kaydet','HomeController@create');
+Route::get('/kisiler','HomeController@indexView');
+Route::get('/sil/{id}','HomeController@delete')->where(array('id'=>'[0-9]+'));//silme işlemi regex ifade
+Route::post('/guncelle/{id}','HomeController@update');//güncelleme işlemi
+Route::get('/guncelle/{id}','HomeController@updateView')->where(array('id'=>'[0-9]+'));
+//Route::match(['get','post']);
 
 
 
-Route::get('/login','UserController@index'); 
 Route::get('/users','UserController@users');

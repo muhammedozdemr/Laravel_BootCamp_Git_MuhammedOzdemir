@@ -12,14 +12,12 @@
     <title>Laravel Ders</title>
 </head>
 <body>
-<h1 class="alert alert-danger text-center">Hello, world!</h1>
 <p class="alert alert-success text-center">Merhaba burda view çalıştı! </p>
 
 @foreach($products as $product)  
           <div class="alert alert-primary text-center" role="alert">
-{{ $product->yeni }} - {{$product->name}}
+{{ $product->username }} - {{$product->name}}
 
-  
 </div>    
 @endforeach
 

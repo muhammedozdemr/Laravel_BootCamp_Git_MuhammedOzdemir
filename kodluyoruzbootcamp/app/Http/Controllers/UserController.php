@@ -16,11 +16,7 @@ class UserController extends Controller
     	//dd($users);
     	return view('users.create',compact('users'));//->with(['users'=>$users]);//merhaba isimli view dosyasına kullanıcılar yollandı.
     }
-       public function index()
-    {
-    	
-    	return view('users.index');
-    }
+
          public function users()
     {
         //$users = DB::table('users')->get();//Veritabanından kullanıcıları çeker
