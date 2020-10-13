@@ -22,7 +22,7 @@
       <h2 class="text-center font-weight-bold text-light mb-5">Kullanıcı Bilgileri Güncelle</h2>
       <div style="padding-left: 380px;" class="row">
      <div class="col-md-6">
-<form action="/guncelle/{{$user->id}}" method="post">
+<form action="{{route('user.update',$user->id)}}" method="post">
     <div class="form-group">
     <label for="exampleName" class=" text-white font-weight-bold">Name</label>
     <input type="text" class="form-control " name="name" value="{{$user->name}}"  id="exampleInputEmail1">

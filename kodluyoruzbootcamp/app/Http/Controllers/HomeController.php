@@ -12,37 +12,20 @@ use Carbon\Carbon;
 
 class HomeController extends Controller
 {
-    public function merhaba()
-    {
-    	//$users = DB::table('users')->get();//Veritabanından kullanıcıları çeker
-    	//$users = User::all();
-    	//dd($users);
-    	//var_dump($users);
-    	
-    	//$products = Product::with(['user'])->get();
-    	
-    	
-    	    $products=DB::table('products')
-            ->join('users','users.id','products.created_by')
-            ->select('users.name as username','products.name')
-            ->get();
-           
-            
-      /*
-            $products=Product::with(['user'])//urun tablosundaki tüm kolonları çek
-            ->join('users','products.created_by','users.id')
-            ->select('users.name','products.name')
-            ->get();
-           	*/
+    	 public function merhaba() {
+        //$users = DB::table('users')->get(); //Veritabanından kullanıcıları çeker
+        //$users = User::all(); //Model kullanarak veri çekme
+        //dd($users);
+        //var_dump($users)
 
-           	/*$products=Product::with(['user'])//urun tablosundaki tüm kolonları çek
-            ->join('users','products.created_by','users.id')
-            ->select('products.name','users.name')
+        $products = Product::with(['user'])->get();
+        /*$products = DB::table('users')
+            ->join('products','products.created_by','=','users.id')
+            ->select() //burdan hem kullanıcı adını hem de ürün adını almayı yapınız
             ->get();
-            */
+        */
 
-    		
-    	return view('merhaba',compact('products'));//->with(['users'=>$users]);//merhaba isimli view dosyasına kullanıcılar yollandı.
+        return view('merhaba', compact('products')); //->with(['users' => $users]); // merhaba isimli view dosyasına kullanıcılar yollandı
     }
 
     public function createView()
@@ -82,18 +65,33 @@ class HomeController extends Controller
 
     public function indexView()
     {
-    	$users=User::where('deleted_at','=',null)->get();
-    	return view('users.index',compact('users'));
+    	
+         $users = DB::table('products')
+            ->join('users','products.created_by','=','users.id')
+            ->select('users.name as uname','users.id','products.name','products.photo','products.price') //burdan hem kullanıcı adını hem de ürün adını almayı yapınız
+            ->where('is_approve','=',1)
+            ->get();
+        
+        return view('users.index',compact('users','products'));
+        
+        
+    }
+
+     public function index()
+    {
+        return view('home');
     }
 
     public function delete($id)
     {
     	//$user=DB::table('users')->where('id','=',$id)->delete();//hard delete ile veriyi kalıcı siler.TAVSİYE EDİLMEZ!!!
-    	
+
     	DB::table('users')->where('id','=',$id)->update([
     		'deleted_at' => Carbon::now() //ile silindiği tarihi kaydeder.
     	]);
 
     	return "Başarıyla Silindi";
     }
+
+
 }

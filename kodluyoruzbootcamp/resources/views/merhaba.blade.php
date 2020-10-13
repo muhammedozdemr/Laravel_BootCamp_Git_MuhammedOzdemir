@@ -15,8 +15,8 @@
 <p class="alert alert-success text-center">Merhaba burda view çalıştı! </p>
 
 @foreach($products as $product)  
-          <div class="alert alert-primary text-center" role="alert">
-{{ $product->username }} - {{$product->name}}
+          <div class="alert alert-primary text-left" role="alert">
+<img src="{{asset('/uploads/products/').'/'.$product->photo}}" width="100px" height="100px" alt="saat" /> - {{ $product->username }} - {{$product->name}}
 
 </div>    
 @endforeach
